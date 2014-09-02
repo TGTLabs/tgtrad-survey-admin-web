@@ -1,8 +1,7 @@
 "use strict";
 
-var uuid = require('node-uuid');
 var Q = require('q');
-var db = require('../lib/db');
+var db = require('../shared/lib/mongoose/db');
 
 module.exports = function register(app) {
     app.get('/createSurvey', function(req, res) {
@@ -12,9 +11,8 @@ module.exports = function register(app) {
     });
 
     app.post('/createSurvey', function(req, res) {
-        var surveyID = uuid.v1();
+        var surveyID = 'yo';
         var input = {surveyID: surveyID, maxResp: req.body.maxResp, owner: req.body.owner, campaign: req.body.campaign, costcenter: req.body.costcenter, worth: req.body.worth, questions: [ {text: req.body.question1, answers: [req.body.answer11,req.body.answer12]}, {text: req.body.question2, answers: [req.body.answer21, req.body.answer22]}]};
-
 
         return db.pooledConnection()
 

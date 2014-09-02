@@ -3,7 +3,7 @@
 var dotenv = require('dotenv');
 dotenv.load();
 
-var db = require('./lib/db');
+var db = require('./shared/lib/mongoose/db');
 var thisPackage = require('./package');
 var express = require("express");
 var serveStatic = require('serve-static');
@@ -14,6 +14,8 @@ var _ = require("lodash");
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
+var passport = require('passport');
+var passport_http = require('passport-http');
 
 // create server
 var app = express();
@@ -51,6 +53,6 @@ app.use('/build', serveStatic(__dirname + '/build'));
 
 // start server
 var port = process.env.PORT || 5000;
-app.listen(port, function() {
-    console.log("%s, version %s. Listening on %s", app.get('title'), thisPackage.version, port);
+app.listen(port, function () {
+  console.log("%s, version %s. Listening on %s", app.get('title'), thisPackage.version, port);
 });
