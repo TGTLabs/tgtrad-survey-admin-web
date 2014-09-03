@@ -3,7 +3,6 @@
 var dotenv = require('dotenv');
 dotenv.load();
 
-var db = require('./shared/lib/mongoose/db');
 var thisPackage = require('./package');
 var express = require("express");
 var serveStatic = require('serve-static');
@@ -14,8 +13,6 @@ var _ = require("lodash");
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
-var passport = require('passport');
-var passport_http = require('passport-http');
 
 // create server
 var app = express();
@@ -32,7 +29,7 @@ app.use(compress());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // view engine setup
-app.set('views', (__dirname + '/views'));
+app.set('views', (__dirname + '/client/views'));
 app.set('view engine', 'jade');
 
 // flash messages
@@ -40,16 +37,11 @@ app.use(cookieParser(app.get('title')));
 app.use(session({secret: app.get('title'), resave: false, saveUninitialized: true}));
 app.use(flash());
 
-// setup routes
-require('./routes/root')(app);
-require('./routes/login')(app);
-require('./routes/action')(app);
-require('./routes/question')(app);
-require('./routes/createSurvey')(app);
-require('./routes/survey')(app);
-
 // static content
-app.use('/build', serveStatic(__dirname + '/build'));
+app.use('/', serveStatic(__dirname + '/client'));
+
+// remaining routes
+require('./routes')(app);
 
 // start server
 var port = process.env.PORT || 5000;
