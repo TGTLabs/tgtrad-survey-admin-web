@@ -1,48 +1,55 @@
-"use strict";
+var express =           require('express')
+  , http =            require('http')
+  , passport =        require('passport')
+  , path =            require('path')
+  , morgan =          require('morgan')
+  , bodyParser =      require('body-parser')
+  , methodOverride =  require('method-override')
+  , cookieParser =    require('cookie-parser')
+  , cookieSession =   require('cookie-session')
+  , session =         require('express-session')
+  , csrf =            require('csurf')
+  , User =            require('./models/User.js');
 
-var dotenv = require('dotenv');
-dotenv.load();
+var app = module.exports = express();
 
-var thisPackage = require('./package');
-var express = require("express");
-var serveStatic = require('serve-static');
-var morgan = require('morgan');
-var compress = require('compression');
-var bodyParser = require('body-parser');
-var _ = require("lodash");
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-
-// create server
-var app = express();
-app.set('title', thisPackage.description);
-
-// view engine setup
-app.set('views', (__dirname + '/client/views'));
+app.set('views', __dirname + '/client/views');
 app.set('view engine', 'jade');
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(express.static(path.join(__dirname, 'client')));
+app.use(cookieParser());
+app.use(session(
+  {
+    secret: process.env.COOKIE_SECRET || "Superdupersecret"
+  }));
 
-// configure logging
-var loggingFormat = 'remote=:remote-addr ":method :url HTTP/:http-version" status=:status length=:res[content-length] responseTime=:response-time request_id=:req[X-Request-ID] referrer=":referrer" userAgent=":user-agent"';
-app.use(morgan(loggingFormat));
+var env = process.env.NODE_ENV || 'development';
+if ('development' === env || 'production' === env) {
+  app.use(csrf());
+  app.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    next();
+  });
+}
 
-// enable gzip compression
-app.use(compress());
+app.use(passport.initialize());
+app.use(passport.session());
 
-//enable body-parser
-app.use(bodyParser.urlencoded({ extended: false }));
+passport.use(User.localStrategy);
+// passport.use(User.twitterStrategy());  // Comment out this line if you don't want to enable login via Twitter
+// passport.use(User.facebookStrategy()); // Comment out this line if you don't want to enable login via Facebook
+// passport.use(User.googleStrategy());   // Comment out this line if you don't want to enable login via Google
+// passport.use(User.linkedInStrategy()); // Comment out this line if you don't want to enable login via LinkedIn
 
-// static content
-app.use(serveStatic(__dirname + '/client'));
+passport.serializeUser(User.serializeUser);
+passport.deserializeUser(User.deserializeUser);
 
-// flash messages
-app.use(cookieParser(app.get('title')));
-app.use(session({secret: app.get('title'), resave: false, saveUninitialized: true}));
-
-// remaining routes
 require('./routes')(app);
 
-// start server
-var port = process.env.PORT || 5000;
-app.listen(port, function () {
-  console.log("%s, version %s. Listening on %s", app.get('title'), thisPackage.version, port);
+app.set('port', process.env.PORT || 5000);
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
 });
