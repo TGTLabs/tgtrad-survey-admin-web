@@ -1,10 +1,10 @@
 "use strict";
 
+var userRoles = require('../client/js/routingConfig').userRoles;
+
 module.exports = function (app) {
   app.get("/*", function (req, res) {
-
-    var role, username;
-
+    var role = userRoles.public, username = '';
     if (req.user) {
       role = req.user.role;
       username = req.user.username;
