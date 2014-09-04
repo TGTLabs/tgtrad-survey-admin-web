@@ -1,0 +1,29 @@
+h1 Image Question
+form.form-horizontal(ng-submit="imageQuestion()", name="surveyForm", role="form")
+	.form-group
+		label.control-label.col-sm-2(for="questionTitle") Question Title
+		.col-sm-10
+			input.form-control(type="text", data-ng-model="questionTitle", placeholder="Question Title", name="questionTitle", required, data-ng-minlength="3", data-ng-maxlength="30", autofocus)
+
+	.form-group
+		label.control-label.col-sm-2(for="questionText") Question Text
+		.col-sm-10
+			input.form-control(type="text", data-ng-model="questionText", placeholder="Question Text", name="questionText", required, data-ng-minlength="3", data-ng-maxlength="30", autofocus)
+
+	.col-md-6
+		.form-group
+			.image-container.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="image2", file-name="imageFileName", data-max-file-size="2")
+				img(ng-src="{{image}}" ng-show="image")
+				span(ng-hide="image") Drop image here
+				input.form-control(type="text", data-ng-model="imageFileName2", name="image2Caption", ng-show="imageFileName")
+
+	.col-md-6
+		.form-group
+			.image-container.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="image2", file-name="imageFileName2", data-max-file-size="2")
+				img(ng-src="{{image2}}" ng-show="image2")
+				span(ng-hide="image2") Drop image here
+				input.form-control(type="text", data-ng-model="imageFileName2", name="image2Caption", ng-show="imageFileName2")
+
+	.form-group
+		.controls
+			button.btn(type="submit") Submit

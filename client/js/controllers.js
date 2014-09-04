@@ -1,6 +1,25 @@
 'use strict';
 
 /* Controllers */
+angular.module('angular-client-side-auth')
+  .controller('SurveyController', ['$rootScope', '$scope', '$location', 'Auth', function($rootScope, $scope, $location, Auth) {
+    $scope.survey = function () {
+      console.log('got me a survey ', $scope.name);
+    }
+  }]);
+
+angular.module('angular-client-side-auth')
+  .controller('QuestionController', ['$rootScope', '$scope', '$log', function($rootScope, $scope, $log) {
+    $scope.image = null;
+    $scope.imageFileName = "";
+
+    $scope.image2 = null;
+    $scope.imageFileName2 = "";
+
+    $scope.imageQuestion = function () {
+      console.log('got me a question title=%s fileName=%s image=%s', $scope.questionTitle, $scope.imageFileName, $scope.imageFileName2);
+    }
+  }]);
 
 angular.module('angular-client-side-auth')
 .controller('NavCtrl', ['$rootScope', '$scope', '$location', 'Auth', function($rootScope, $scope, $location, Auth) {

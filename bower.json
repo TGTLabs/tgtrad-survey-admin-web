@@ -19,6 +19,6 @@
     "angular-cookies": "~1.2.23",
     "font-awesome": "~4.2.0",
     "angular-bootstrap": "~0.11.0",
-    "angular-ui-router": "~0.2.11"
+    "angular-route": "~1.2.23"
   }
 }
