@@ -1,23 +1,14 @@
-h1 Survey
-form.form-horizontal(ng-submit="survey()", name="surveyForm", role="form")
-	.form-group
-		label.control-label.col-sm-2(for="name") Survey Name
-		.col-sm-10
-			input.form-control(type="text", data-ng-model="name", placeholder="Survey Name", name="name", required, data-ng-minlength="3", data-ng-maxlength="30", autofocus)
-	.form-group
-		label.control-label.col-sm-2(for="maxResponses") Maximum Responses
-		.col-sm-10
-			input.form-control(type="number", data-ng-model="maxResponses", placeholder="Maximum Responses", name="maxResponses", required, data-min="5", data-max="1000")
-	.form-group
-		.controls
-			button.btn(type="submit") Submit
+h1 Survey Start!
 
-.btn-group(dropdown, is-open="status.isopen")
-	button.btn.btn-primary.dropdown-toggle(type="button", ng-disabled="disabled") Add Question
-		span.caret
-	ul.dropdown-menu(role="menu")
-		//li: a(href="#/survey/imageQuestion") Image Question
-		li: a(ui-sref="question") Image Question
-		li: a(href="#") Another Action
-		li.divider
-		li: a(href="#") Seperated Link
+.row
+	.col-sm-8.col-sm-offset-2
+		#form-container
+			.page-header.text-center
+				h2 Survey Home
+					#status-buttons.text-center
+						a(ui-sref-active="active", ui-sref=".details") Details
+						a(ui-sref-active="active", ui-sref=".audience") Audience
+						a(ui-sref-active="active", ui-sref=".activate") Activate
+
+			form#signup-form(ng-submit="processForm()")
+				#form-views(ui-view="")

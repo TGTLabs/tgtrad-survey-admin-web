@@ -1,0 +1,44 @@
+h1 Audience
+	.form-group
+		label.control-label.col-sm-2(for="survey.audience.maxRespondents") recepients
+		.col-sm-10.input-group
+			span.input-group-addon
+				input(type="radio", ng-model="survey.audience.maxRespondents", value="10", name="survey.audience.maxRespondents.10")
+			label.form-control(for="survey.audience.maxRespondents.10") 10
+
+			span.input-group-addon
+				input(type="radio", ng-model="survey.audience.maxRespondents", value="100", name="survey.audience.maxRespondents.100")
+			label.form-control(for="survey.audience.maxRespondents.100") 100
+
+			span.input-group-addon
+				input(type="radio", ng-model="survey.audience.maxRespondents", value="1000", name="survey.audience.maxRespondents.1000")
+			label.form-control(for="survey.audience.maxRespondents.1000") 1000
+
+	.form-group
+			label.control-label.col-sm-2(for="survey.audience.targetGender") gender
+			.col-sm-10.input-group
+				span.input-group-addon
+					input(type="radio", ng-model="survey.audience.targetGender", value="m", name="survey.audience.targetGender.male")
+				label.form-control(for="survey.audience.targetGender.male") male
+
+				span.input-group-addon
+					input(type="radio", ng-model="survey.audience.targetGender", value="f", name="survey.audience.targetGender.female")
+				label.form-control(for="survey.audience.targetGender.female") female
+
+	.form-group
+		label.control-label.col-sm-2(for="survey.audience.generation") generation
+		.col-sm-10.input-group
+			span.input-group-addon
+				input(type="radio", ng-model="survey.audience.generation", value="boomers", name="survey.audience.maxRespondents.boomers")
+			label.form-control(for="survey.audience.maxRespondents.boomers") boomers
+			span.input-group-addon
+				input(type="radio", ng-model="survey.audience.generation", value="genX", name="survey.audience.maxRespondents.genx")
+			label.form-control(for="survey.audience.maxRespondents.genx") genX
+			span.input-group-addon
+				input(type="radio", ng-model="survey.audience.generation", value="millennials", name="survey.audience.maxRespondents.millennials")
+			label.form-control(for="survey.audience.maxRespondents.millennials") millennials
+
+		.form-group
+			.controls
+				button.btn(ui-sref="form.activate") Next!
+

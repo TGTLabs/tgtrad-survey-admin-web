@@ -36,8 +36,10 @@ angular.module('angular-client-side-auth').directive('imageDropzone', function (
           return false;
         }
       };
+
       element.bind('dragover', processDragOverOrEnter);
       element.bind('dragenter', processDragOverOrEnter);
+
       return element.bind('drop', function (event) {
         var file, name, reader, size, type;
         if (event != null) {

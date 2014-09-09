@@ -27,3 +27,13 @@ form.form-horizontal(ng-submit="imageQuestion()", name="surveyForm", role="form"
 	.form-group
 		.controls
 			button.btn(type="submit") Submit
+
+	.btn-group(dropdown, is-open="status.isopen")
+		button.btn.btn-primary.dropdown-toggle(type="button", ng-disabled="disabled") Add Question
+			span.caret
+		ul.dropdown-menu(role="menu")
+			//li: a(href="#/survey/imageQuestion") Image Question
+			li: a(ui-sref="question") Image Question
+			li: a(href="#") Another Action
+			li.divider
+			li: a(href="#") Seperated Link
