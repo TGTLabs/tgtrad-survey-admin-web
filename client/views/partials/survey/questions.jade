@@ -1,0 +1,16 @@
+h1 Questions
+	tabset
+		tab(ng-repeat="t in tabs", active="t.active")
+			tab-heading {{t.title}}
+				a(ng-click="removeTab($index)")
+					i.glyphicon.glyphicon-remove
+			span(ng-bind-html="to_trusted(t.content)")
+			div(ng-include="t.template")
+
+		tab
+			tab-heading(ng-click="addWorkspace()")
+				i.glyphicon.glyphicon-plus-sign
+
+	.form-group
+		.controls
+			button.btn(ui-sref="form.activate") Next!

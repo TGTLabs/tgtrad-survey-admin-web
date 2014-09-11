@@ -2,7 +2,11 @@
 
 /* Controllers */
 angular.module('angular-client-side-auth')
-  .controller('SurveyController', ['$rootScope', '$scope', '$location', 'Auth', function ($rootScope, $scope, $location, Auth) {
+  .controller('SurveyController', ['$rootScope', '$scope', '$sce', '$location', 'Auth', function ($rootScope, $scope, $sce, $location, Auth) {
+
+    $scope.to_trusted = function(html_code) {
+      return $sce.trustAsHtml(html_code);
+    };
 
     // we will store all of our form data in this object
     $scope.survey = {};
@@ -15,6 +19,8 @@ angular.module('angular-client-side-auth')
     $scope.clear = function () {
       $scope.dt = null;
     };
+
+    $scope.survey.enable = true;
 
     // Disable weekend selection
     $scope.disabled = function(date, mode) {
@@ -38,6 +44,10 @@ angular.module('angular-client-side-auth')
       startingDay: 1
     };
 
+    $scope.submitSurvey = function () {
+      console.log('i am submitted');
+    };
+
     $scope.initDate = new Date('2016-15-20');
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
@@ -50,8 +60,34 @@ angular.module('angular-client-side-auth')
 
     $scope.imageQuestion = function () {
       console.log('got me a question title=%s fileName=%s image=%s', $scope.questionTitle, $scope.imageFileName, $scope.imageFileName2);
-    }
+    };
 
+    $scope.tabs = [];
+
+    var setAllInactive = function() {
+      angular.forEach($scope.tabs, function(tab) {
+        tab.active = false;
+      });
+    };
+
+    var addNewWorkspace = function() {
+      var id = $scope.tabs.length + 1;
+      $scope.tabs.push({
+        title: "Workspace " + id,
+        content: '<h1>tab content</h1>',
+        template: 'imageQuestion',
+        active: true
+      });
+    };
+
+    $scope.removeTab = function (index) {
+      $scope.tabs.splice(index, 1);
+    };
+
+    $scope.addWorkspace = function () {
+      setAllInactive();
+      addNewWorkspace();
+    };
   }]);
 
 angular.module('angular-client-side-auth')

@@ -11,23 +11,28 @@
       // route to show our basic form (/form)
       .state('form', {
         url: '/survey',
-        templateUrl: 'partials/survey',
+        templateUrl: 'partials/surveyHome',
         controller: 'SurveyController'
       })
 
       .state('form.details', {
         url: '/details',
-        templateUrl: 'partials/survey-partials/page1'
+        templateUrl: 'partials/survey/details'
       })
 
       .state('form.audience', {
         url: '/audience',
-        templateUrl: 'partials/survey-partials/page2'
+        templateUrl: 'partials/survey/audience'
+      })
+
+      .state('form.questions', {
+        url: '/questions',
+        templateUrl: 'partials/survey/questions'
       })
 
       .state('form.activate', {
         url: '/activate',
-        templateUrl: 'partials/survey-partials/page3'
+        templateUrl: 'partials/survey/activate'
       })
 
       .state('question', {

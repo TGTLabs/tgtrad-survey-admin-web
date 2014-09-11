@@ -1,97 +1,24 @@
-/*
- from angular
-*/
+/* from angular docs */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none;
 }
 
-/*
-  from angular-bootstrap
-*/
+/* from angular-bootstrap */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-/*
-  Bootstrap overrides
-*/
-.btn .caret {
-    margin-left: 2px;
-}
+/* bootstrap overrides */
+.btn .caret                     { margin-left: 2px; }
 
-body {
-    font-size: 1.5em;
-}
+/* image dropzone */
+.dropzone                       { width: 250px; height: 45px; border: 1px solid #ccc; text-align: center; padding: 30px; margin: 20px; }
+.image-container                { width: 300px; height: 300px; }
+.image-container img            { max-width: 100%; }
 
-.dropzone {
-    width: 250px;
-    height: 45px;
-    border: 1px solid #ccc;
-    text-align: center;
-    padding: 30px;
-    margin: 20px;
-    font-family: Arial;
-}
+/* numbered buttons */
+#status-buttons                 {  }
+#status-buttons a               { display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; }
+#status-buttons span            { display:block; height:30px; margin:0 auto 10px; padding-top:8px; width:30px; border-radius:50%; }
 
-.image-container {
-    width: 300px;
-    height: 300px;
-}
-
-.image-container img {
-    max-width: 100%;
-}
-
-.file-name {
-    font-family: Arial;
-}
-
-#cover {
-    position:absolute;
-    height:100%;
-    width:100%;
-    background:white;
-}
-
-#userInfo {
-    float:right;padding:8px;
-}
-
-#alertBox {
-    position: fixed;
-    min-width: 75%;
-    left: 50%;
-    margin: 0 0 0 -37.5%;
-    top: 5px;
-}
-
-.fa.fa-twitter {
-    color:#00A7E7;
-}
-
-.fa.fa-facebook-square {
-    color:#3662A0;
-}
-
-.fa.fa-google-plus-square {
-    color: #D74634;
-}
-
-.fade-hide-setup, .fade-show-setup {
-    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-}
-
-.fade-hide-setup {
-    opacity:1;
-}
-.fade-hide-setup.fade-hide-start {
-    opacity:0;
-}
-
-.fade-show-setup {
-    opacity:0;
-}
-.fade-show-setup.fade-show-start {
-    opacity:1;
-}
+/* active buttons */
+#status-buttons a.active span   { background: #89bc2a; }

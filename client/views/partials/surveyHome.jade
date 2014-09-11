@@ -1,0 +1,31 @@
+.row
+	.col-sm-8.col-sm-offset-2
+		#survey-form-container
+			.page-header.text-center
+				h2
+					span.label.label-default Survey Wizard
+					#status-buttons.text-center
+						a(ui-sref-active="active", ui-sref=".details")
+							span 1
+							| Details
+						a(ui-sref-active="active", ui-sref=".audience")
+							span 2
+							| Audience
+						a(ui-sref-active="active", ui-sref=".questions")
+							span 3
+							| Questions
+						a(ui-sref-active="active", ui-sref=".activate")
+							span 4
+							| Activate
+
+			form#survey-form(ng-submit="submitSurvey()")
+				#survey-form-views(ui-view="")
+
+script(type="text/ng-template", id="details")
+	include survey/details
+script(type="text/ng-template", id="audience")
+	include survey/audience
+script(type="text/ng-template", id="questions")
+	include survey/questions
+script(type="text/ng-template", id="activate")
+	include survey/activate
