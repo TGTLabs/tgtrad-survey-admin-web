@@ -3,7 +3,6 @@ tabset
 		tab-heading {{question.title}}
 			a(ng-click="removeTab($index)")
 				i.glyphicon.glyphicon-remove
-		span(ng-bind-html="to_trusted(question.content)")
 		ng-form(name="questionForm")
 			div(ng-include="question.template")
 

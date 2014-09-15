@@ -2,11 +2,7 @@
 
 /* Controllers */
 angular.module('angular-client-side-auth')
-  .controller('SurveyController', ['$rootScope', '$scope', '$sce', '$location', 'Auth', function ($rootScope, $scope, $sce, $location, Auth) {
-
-    $scope.to_trusted = function(html_code) {
-      return $sce.trustAsHtml(html_code);
-    };
+  .controller('SurveyController', ['$rootScope', '$scope', '$location', 'Auth', function ($rootScope, $scope, $location, Auth) {
 
     // we will store all of our form data in this object
     $scope.survey = {};
@@ -73,7 +69,6 @@ angular.module('angular-client-side-auth')
       var id = $scope.questions.length + 1;
       $scope.questions.push({
         title: "question " + id,
-        content: '<h1>tab content</h1>',
         template: 'imageQuestion',
         text: 'question text',
         image: null,
