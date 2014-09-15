@@ -1,39 +1,25 @@
-h1 Image Question
-form.form-horizontal(ng-submit="imageQuestion()", name="surveyForm", role="form")
-	.form-group
-		label.control-label.col-sm-2(for="questionTitle") Question Title
-		.col-sm-10
-			input.form-control(type="text", data-ng-model="questionTitle", placeholder="Question Title", name="questionTitle", required, data-ng-minlength="3", data-ng-maxlength="30", autofocus)
+.form-group(ng-class="{ 'has-error' : questionForm.title.$invalid }")
+	label.control-label.col-sm-2(for="question.title") Question Title
+	.col-sm-10
+		input.form-control(type="text", ng-model="question.title", placeholder="Question Title", name="title", required, ng-minlength="3", ng-maxlength="30", autofocus)
+		p.help-block(ng-show="questionForm.title.$invalid") question title is required
 
-	.form-group
-		label.control-label.col-sm-2(for="questionText") Question Text
-		.col-sm-10
-			input.form-control(type="text", data-ng-model="questionText", placeholder="Question Text", name="questionText", required, data-ng-minlength="3", data-ng-maxlength="30", autofocus)
+.form-group(ng-class="{ 'has-error' : questionForm.text.$invalid }")
+	label.control-label.col-sm-2(for="question.text") Question Text
+	.col-sm-10
+		input.form-control(type="text", ng-model="question.text", placeholder="Question Text", name="text", required, ng-minlength="3", ng-maxlength="30", autofocus)
+		p.help-block(ng-show="questionForm.text.$invalid") question title is required
 
-	.col-md-6
-		.form-group
-			.image-container.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="image2", file-name="imageFileName", data-max-file-size="2")
-				img(ng-src="{{image}}" ng-show="image")
-				span(ng-hide="image") Drop image here
-				input.form-control(type="text", data-ng-model="imageFileName2", name="image2Caption", ng-show="imageFileName")
+.form-group
+	.col-lg-10
+		.col-lg-offset-3.thumbnail.image-container.col-lg-2.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="question.image", file-name="question.imageFileName", max-file-size="2", ng-class="{ 'has-error' : questionForm.imageFileName.$invalid }")
+			img(ng-src="{{question.image}}" ng-show="question.image", tooltip="{{question.imageFileName}}")
+			span(ng-hide="question.image") drop an image here
+			input.form-control(type="text", ng-model="question.imageFileName", required, name="imageFileName", ng-show="question.image")
+			p.help-block(ng-show="questionForm.imageFileName.$invalid && question.image") image title is required
 
-	.col-md-6
-		.form-group
-			.image-container.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="image2", file-name="imageFileName2", data-max-file-size="2")
-				img(ng-src="{{image2}}" ng-show="image2")
-				span(ng-hide="image2") Drop image here
-				input.form-control(type="text", data-ng-model="imageFileName2", name="image2Caption", ng-show="imageFileName2")
-
-	.form-group
-		.controls
-			button.btn(type="submit") Submit
-
-	.btn-group(dropdown, is-open="status.isopen")
-		button.btn.btn-primary.dropdown-toggle(type="button", ng-disabled="disabled") Add Question
-			span.caret
-		ul.dropdown-menu(role="menu")
-			//li: a(href="#/survey/imageQuestion") Image Question
-			li: a(ui-sref="question") Image Question
-			li: a(href="#") Another Action
-			li.divider
-			li: a(href="#") Seperated Link
+		.col-lg-offset-3.thumbnail.image-container.col-lg-2.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="question.image2", file-name="question.imageFileName2", max-file-size="2", ng-class="{ 'has-error' : questionForm.imageFileName2.$invalid }")
+			img(ng-src="{{question.image2}}" ng-show="question.image2", tooltip="{{question.imageFileName2}}")
+			span(ng-hide="question.image2") drop an image here
+			input.form-control(type="text", ng-model="question.imageFileName2", required, name="imageFileName2", ng-show="question.image2")
+			p.help-block(ng-show="questionForm.imageFileName2.$invalid && question.image2") image title is required

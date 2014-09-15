@@ -9,13 +9,13 @@
 		input.form-control(type="text", ng-model="survey.campaign", placeholder="ex. brand marketing research", name="survey.campaign")
 
 .form-group
-	.col-lg-10
-		.image-container.col-lg-2.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="survey.hero.image", file-name="survey.hero.caption", data-max-file-size="2")
+	.col-lg-10.col-lg-offset-5
+		.thumbnail.image-container.col-lg-2.dropzone(image-dropzone="[image/png, image/jpeg, image/gif]", file="survey.hero.image", file-name="survey.hero.caption", data-max-file-size="2")
 			img(ng-src="{{survey.hero.image}}" ng-show="survey.hero.image", tooltip="{{survey.hero.caption}}")
 			span(ng-hide="survey.hero.image") drop an image here
 			input.form-control(type="text", ng-model="survey.hero.caption", name="survey.hero.caption", ng-show="survey.hero.image")
 
-.form-group
-	.col-lg-10
-		.controls
-			button.btn(ui-sref="form.audience") Next
+.col-lg-10
+	.btn-group
+		a.btn.btn-default(ui-sref="form.audience")
+			span.glyphicon.glyphicon-circle-arrow-right Next

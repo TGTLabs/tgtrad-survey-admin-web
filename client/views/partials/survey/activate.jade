@@ -1,27 +1,30 @@
-h1 Done
-	.form-group
-		.col-sm-10.input-group
-			span.input-group-addon
-				input(type="checkbox", ng-model="survey.enable", value="10", name="survey.enable")
-			label.form-control(for="survey.enable") enable
+.form-group
+	.col-lg-10.col-lg-offset-1.input-group
+		span.input-group-addon
+			input(type="checkbox", ng-model="survey.enable", value="10", name="survey.enable")
+		label.form-control(for="survey.enable") enable
 
-	//.form-group
-	//	label.control-label(for="survey.start") start date
-	//	.col-sm-10.input-group
-	//		input.form-control(type="text", ng-model="survey.start", name="survey.start", datepicker-popup="dd-MMMM-yyyy")
-	//		span.input-group-btn
-	//			button.btn.btn-default(type="button", ng-click="open($event)")
-	//				i.glyphicon.glyphicon-calendar
+.form-group
+	label.control-label.col-lg-2(for="survey.start") start date
+	.col-lg-10
+		p.input-group
+			input.form-control(type="text", datepicker-popup="{{format}}", name="survey.start", id="survey.start", ng-model="survey.start", is-open="$parent.start", min-date="minDate", max-date="'2015-06-22'", datepicker-options="dateOptions", date-disabled="disabled(date, mode)", ng-required="true", close-text="Close")
+			span.input-group-btn
+				button.btn.btn-default(type="button", ng-click="open($event, 'start')")
+					i.glyphicon.glyphicon-calendar
 
-	.form-group
-		label.control-label(for="survey.end") end date
-		.col-sm-10
-			p.input-group
-				input.form-control(type="text", datepicker-popup="{{format}}", ng-model="dt", is-open="$parent.opened", min-date="minDate", max-date="'2015-06-22'", datepicker-options="dateOptions", date-disabled="disabled(date, mode)", ng-required="true", close-text="Close")
-				span.input-group-btn
-					button.btn.btn-default(type="button", ng-click="open($event)")
-						i.glyphicon.glyphicon-calendar
 
-	.form-group
-		.controls
-			button.btn(type="submit") Done!
+.form-group
+	label.control-label.col-lg-2(for="survey.start") end date
+	.col-lg-10
+		p.input-group
+			input.form-control(type="text", datepicker-popup="{{format}}", name="survey.end", id="survey.end", ng-model="survey.end", is-open="$parent.end", min-date="minDate", max-date="'2015-06-22'", datepicker-options="dateOptions", date-disabled="disabled(date, mode)", ng-required="true", close-text="Close")
+			span.input-group-btn
+				button.btn.btn-default(type="button", ng-click="open($event, 'end')")
+					i.glyphicon.glyphicon-calendar
+
+.col-lg-10
+	.btn-group
+		a.btn.btn-default(ui-sref="form.questions")
+			span.glyphicon.glyphicon-circle-arrow-left Prev
+		button.btn.btn-default(type="submit") Done

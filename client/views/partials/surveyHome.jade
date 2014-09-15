@@ -18,7 +18,7 @@
 							span 4
 							| Activate
 
-			form#survey-form(ng-submit="submitSurvey()")
+			form#survey-form.form-horizontal(ng-submit="submitSurvey()", novalidate)
 				#survey-form-views(ui-view="")
 
 script(type="text/ng-template", id="details")

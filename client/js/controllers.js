@@ -20,23 +20,22 @@ angular.module('angular-client-side-auth')
       $scope.dt = null;
     };
 
-    $scope.survey.enable = true;
-
-    // Disable weekend selection
-    $scope.disabled = function(date, mode) {
-      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-    };
+//    // Disable weekend selection
+//    $scope.disabled = function(date, mode) {
+//      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+//    };
 
     $scope.toggleMin = function() {
       $scope.minDate = $scope.minDate ? null : new Date();
     };
     $scope.toggleMin();
 
-    $scope.open = function($event) {
+    $scope.open = function($event, component) {
       $event.preventDefault();
       $event.stopPropagation();
 
-      $scope.opened = true;
+      console.log('clicked ', component);
+      $scope[component] = true;
     };
 
     $scope.dateOptions = {
@@ -62,26 +61,30 @@ angular.module('angular-client-side-auth')
       console.log('got me a question title=%s fileName=%s image=%s', $scope.questionTitle, $scope.imageFileName, $scope.imageFileName2);
     };
 
-    $scope.tabs = [];
+    $scope.questions = [];
 
     var setAllInactive = function() {
-      angular.forEach($scope.tabs, function(tab) {
-        tab.active = false;
+      angular.forEach($scope.questions, function(question) {
+        question.active = false;
       });
     };
 
     var addNewWorkspace = function() {
-      var id = $scope.tabs.length + 1;
-      $scope.tabs.push({
-        title: "Workspace " + id,
+      var id = $scope.questions.length + 1;
+      $scope.questions.push({
+        title: "question " + id,
         content: '<h1>tab content</h1>',
         template: 'imageQuestion',
-        active: true
+        text: 'question text',
+        image: null,
+        image2: null,
+        imageFileName: "",
+        imageFileName2: ""
       });
     };
 
     $scope.removeTab = function (index) {
-      $scope.tabs.splice(index, 1);
+      $scope.questions.splice(index, 1);
     };
 
     $scope.addWorkspace = function () {
