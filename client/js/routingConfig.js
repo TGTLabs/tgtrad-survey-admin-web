@@ -35,11 +35,11 @@
    It starts off with "1" and shifts the bit to the left for each element in the
    roles array parameter
    */
-
   function buildRoles(roles) {
 
     var bitMask = "01";
     var userRoles = {};
+
 
     for (var role in roles) {
       var intCode = parseInt(bitMask, 2);
